@@ -87,7 +87,7 @@ const cases = computed(() => {
       .filter(([path]) => {
         const low = path.toLowerCase()
         const normPath = low.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[\s_]+/g, '-')
-        return low.includes(slug) || low.includes(title) || normPath.includes(slug) || normPath.includes(title)
+        return low.includes(slug) || low.includes(title) || normPath.includes(slug) || normPath.includes(title) || (slug.includes('assistant') && low.includes('assistant'))
       })
       .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
       .map(([, url]) => url)

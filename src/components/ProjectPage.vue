@@ -214,11 +214,12 @@ const galleryImages = computed(() => {
   const matches = entries
     .filter(([path]) => {
       const low = path.toLowerCase()
-      return low.includes(slug) || low.includes(title)
+      return low.includes(slug) || low.includes(title) || (slug.includes('assistant') && low.includes('assistant'))
     })
     .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
     .map(([, url]) => url)
-  return matches.length ? matches : Array.isArray(p.gallery) ? p.gallery : []
+  const uniqueMatches = Array.from(new Set(matches))
+  return uniqueMatches.length ? uniqueMatches : Array.isArray(p.gallery) ? p.gallery : []
 })
 </script>
 
