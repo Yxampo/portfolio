@@ -2,9 +2,9 @@
 
 /* App container utility */
 #app {
-  max-width: 1380px; /* un peu plus large pour la nouvelle taille de texte */
+  max-width: 1380px;
   margin: 0 auto;
-  padding: 2.5rem 2.2rem; /* plus d'air latéral pour respirer */
+  padding: 2.5rem 2.2rem;
   font-weight: 400;
 }
 
@@ -13,6 +13,16 @@
   max-width: 1380px;
   margin: 0 auto;
   padding: 0 2.2rem;
+}
+
+/* Adaptation du padding sur les écrans mobiles pour libérer de l'espace de lecture */
+@media (max-width: 768px) {
+  #app {
+    padding: 1.25rem 1rem;
+  }
+  .container {
+    padding: 0 1rem;
+  }
 }
 
 /* Links use project text color and subtle hover */
