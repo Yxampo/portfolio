@@ -179,12 +179,12 @@ async function goTo(hash) {
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 0;
   z-index: 70;
   flex-direction: column;
   justify-content: space-between;
-  width: 32px;
-  height: 24px;
+  width: 28px;
+  height: 20px;
 }
 
 .mobile-toggle .bar {
@@ -229,7 +229,7 @@ async function goTo(hash) {
     right: 0;
     width: 260px;
     height: 100vh;
-    background: rgba(3, 15, 26, 0.96);
+    background: rgba(3, 15, 26, 0.98);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-left: 1px solid rgba(255, 255, 255, 0.08);
@@ -238,13 +238,17 @@ async function goTo(hash) {
     padding: 6rem 2rem 2rem;
     gap: 1.8rem;
     transform: translateX(100%);
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.35s ease;
     z-index: 65;
     box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
   }
 
   .nav-menu.is-open {
     transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
   }
 
   .nav-menu a {

@@ -752,7 +752,14 @@ const galleryImages = computed(() => {
 
 @media (max-width: 768px) {
   .project-shell {
-    padding: 1.8rem 0.5rem 4rem;
+    padding: 2rem 1.25rem 4rem;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .meta-grid {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
   }
 
   .grid-2col {
