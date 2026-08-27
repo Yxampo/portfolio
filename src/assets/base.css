@@ -147,10 +147,13 @@ main {
   border: 1px solid var(--color-border);
   padding: 1rem;
   border-radius: 10px;
+  min-width: 0;
 }
 
 .project-media {
-  height: 160px;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16/10;
   background: rgba(255,255,255,0.03);
   display: flex;
   align-items: center;

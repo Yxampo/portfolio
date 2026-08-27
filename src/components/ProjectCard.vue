@@ -37,6 +37,8 @@ const card = ref(null)
   border-radius: 16px;
   overflow: hidden;
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  min-width: 0;
 }
 
 .project-card:hover {
@@ -46,8 +48,11 @@ const card = ref(null)
 }
 
 .project-media {
+  position: relative;
   aspect-ratio: 16/10;
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.04);
 }
@@ -56,6 +61,7 @@ const card = ref(null)
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
   transition: transform 0.4s ease;
 }
 

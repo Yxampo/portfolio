@@ -7,7 +7,7 @@
 
     <div class="cases">
       <RouterLink :to="'/' + c.id" v-for="c in cases" :key="c.id" class="case" :ref="el => collectCaseEl(el)">
-        <div class="case-media">
+        <div class="case-media" :class="{ 'is-portrait': c.isPortrait }">
           <img :src="c.cover" :alt="'Couverture projet ' + c.title" loading="lazy" />
           <div class="media-overlay">
             <span class="view-btn">Découvrir le projet →</span>
@@ -97,7 +97,8 @@ const cases = computed(() => {
                   placeholder
                   
     const tags = p.stack || []
-    return { id: p.slug, title: p.title, cover, description: p.description || p.tagline || '', tags, type: p.projectType }
+    const isPortrait = slug.includes('assistant') || (cover && cover.includes('assistant'))
+    return { id: p.slug, title: p.title, cover, description: p.description || p.tagline || '', tags, type: p.projectType, isPortrait }
   })
 })
 
@@ -143,6 +144,8 @@ onMounted(() => {
   border-radius: 20px;
   padding: 1.5rem;
   transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  min-width: 0;
 }
 
 .case:hover {
@@ -153,6 +156,9 @@ onMounted(() => {
 
 .case-media {
   position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   aspect-ratio: 16/9;
   background: rgba(255, 255, 255, 0.04);
   overflow: hidden;
@@ -163,7 +169,21 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
   transition: transform 0.5s ease;
+}
+
+.case-media.is-portrait {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(3, 15, 26, 0.8));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.case-media.is-portrait img {
+  object-fit: contain;
+  padding: 0.75rem;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4));
 }
 
 .media-overlay {
@@ -200,6 +220,7 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-width: 0;
 }
 
 .badge-line {
@@ -270,7 +291,7 @@ onMounted(() => {
   }
   .case {
     grid-template-columns: 52% 1fr;
-    align-items: stretch;
+    align-items: center;
     padding: 2rem;
     gap: 2.2rem;
   }
