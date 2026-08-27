@@ -7,7 +7,7 @@
 
     <div class="cases">
       <RouterLink :to="'/' + c.id" v-for="c in cases" :key="c.id" class="case" :ref="el => collectCaseEl(el)">
-        <div class="case-media" :class="{ 'is-portrait': c.isPortrait }">
+        <div class="case-media">
           <img :src="c.cover" :alt="'Couverture projet ' + c.title" loading="lazy" />
           <div class="media-overlay">
             <span class="view-btn">Découvrir le projet →</span>
@@ -97,8 +97,7 @@ const cases = computed(() => {
                   placeholder
                   
     const tags = p.stack || []
-    const isPortrait = slug.includes('assistant') || (cover && cover.includes('assistant'))
-    return { id: p.slug, title: p.title, cover, description: p.description || p.tagline || '', tags, type: p.projectType, isPortrait }
+    return { id: p.slug, title: p.title, cover, description: p.description || p.tagline || '', tags, type: p.projectType }
   })
 })
 
@@ -169,21 +168,7 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
   transition: transform 0.5s ease;
-}
-
-.case-media.is-portrait {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(3, 15, 26, 0.8));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.case-media.is-portrait img {
-  object-fit: contain;
-  padding: 0.75rem;
-  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4));
 }
 
 .media-overlay {
